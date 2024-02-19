@@ -6,7 +6,7 @@
 #include <iostream>
 
 CubeMesh::CubeMesh():
-    current_triangle_no(4), 
+    current_triangle_no(8), 
     vertex_length(5),
     total_position_vertex_length(3)
 {
@@ -41,6 +41,31 @@ CubeMesh::CubeMesh():
         1.0f, -1.0f, -1.0f, 0.0f, 0.0f, // bottom right
         1.0f, 1.0f, -1.0f, 0.0f, 1.0f, // top right
         -1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
+
+        // left
+        // triangle 5
+        
+        -1.0f, -1.0f, -1.0f, 0.0f, 0.0f, // bottom left
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
+        -1.0f, 1.0f, -1.0f, 0.0f, 1.0f, // top left
+
+        // triangle 6
+        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, // bottom right
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
+        -1.0f, -1.0f, -1.0f, 0.0f, 0.0f, // bottom left
+
+
+        // right
+        // triangle 7
+        
+        1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
+        1.0f, 1.0f, 1.0f, 0.0f, 1.0f, // top right
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, // top left
+
+        // triangle 8
+        1.0f, -1.0f, 1.0f, 0.0f, 0.0f, // bottom right
+        1.0f, 1.0f, 1.0f, 0.0f, 1.0f, // top right
+        1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
 
     };
 
