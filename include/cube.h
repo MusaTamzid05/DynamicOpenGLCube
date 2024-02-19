@@ -34,7 +34,11 @@ struct Cube : Entity {
     Cube();
     virtual ~Cube();
 
+    void reset_mesh();
     void render();
+
+    void increase_triangle();
+    void decrease_triangle();
 
     unsigned int texture_id;
     CubeMesh mesh;

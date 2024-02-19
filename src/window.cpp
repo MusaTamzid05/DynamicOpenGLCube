@@ -34,7 +34,7 @@ Window::Window(const std::string& title):m_running(false) {
     glEnable(GL_DEPTH_TEST);
     
 
-    m_cube= new Cube();
+    m_cube = new Cube();
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
     first_mouse_move = true;
 
@@ -105,6 +105,12 @@ void Window::handle_event(float delta_time) {
 
             if(event.key.code == sf::Keyboard::Down) 
                 Camera::get_instance()->handle_keyboard(Camera::Direction::Down, delta_time);
+
+            if(event.key.code == sf::Keyboard::O) 
+                m_cube->increase_triangle();
+
+            if(event.key.code == sf::Keyboard::P) 
+                m_cube->decrease_triangle();
             
 
         }

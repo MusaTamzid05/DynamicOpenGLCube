@@ -6,7 +6,7 @@
 #include <iostream>
 
 CubeMesh::CubeMesh():
-    current_triangle_no(12), 
+    current_triangle_no(1), 
     vertex_length(5),
     total_position_vertex_length(3)
 {
@@ -107,9 +107,20 @@ CubeMesh::~CubeMesh() {
 }
 
 void CubeMesh::increase_triangle() {
+    if(current_triangle_no ==  12)
+        return;
+
+    current_triangle_no += 1;
+    update_active_vertices();
+
 
 }
 void CubeMesh::decrease_triangle() {
+    if(current_triangle_no == 1)
+        return;
+
+    current_triangle_no -= 1;
+    update_active_vertices();
 
 }
 
@@ -131,28 +142,13 @@ Cube::Cube() {
 
     m_shader = new Shader("../shaders/cube.vs", "../shaders/cube.fs");
 
-    mesh.update_active_vertices();
-    std::vector<float> vertices =  mesh.active_vertices;
-    std::cout << vertices.size() << "\n";
-    total_draw_points = mesh.get_total_draw_points();
-    std::cout << total_draw_points  << "\n";
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
-    glBindVertexArray(VAO);
+    reset_mesh();
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER,vertices.size() *  sizeof(float), vertices.data(), GL_STATIC_DRAW);
 
-    // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    // texture coord attribute
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    glBindVertexArray(0);
 
     m_shader->use();
     glm::mat4 projection = Camera::get_instance()->get_projection();
@@ -167,6 +163,30 @@ Cube::~Cube() {
 
 }
 
+void Cube::reset_mesh() {
+
+    mesh.update_active_vertices();
+    std::vector<float> vertices =  mesh.active_vertices;
+    std::cout << vertices.size() << "\n";
+    total_draw_points = mesh.get_total_draw_points();
+    std::cout << total_draw_points  << "\n";
+    glBindVertexArray(VAO);
+
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER,vertices.size() *  sizeof(float), vertices.data(), GL_STATIC_DRAW);
+
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    // texture coord attribute
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glBindVertexArray(0);
+
+}
+
 
 
 void Cube::render() {
@@ -177,5 +197,18 @@ void Cube::render() {
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0 , total_draw_points);
 
+
+}
+
+
+void Cube::increase_triangle() {
+    mesh.increase_triangle();
+    reset_mesh();
+
+}
+
+void Cube::decrease_triangle() {
+    mesh.decrease_triangle();
+    reset_mesh();
 
 }
