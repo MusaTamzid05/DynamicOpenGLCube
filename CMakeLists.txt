@@ -15,6 +15,7 @@ SET(SOURCE_FILES
     src/entity.cpp
     src/cube.cpp
     src/rectangle.cpp
+    src/command_state.cpp
     )
 
 

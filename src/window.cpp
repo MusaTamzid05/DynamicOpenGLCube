@@ -4,6 +4,7 @@
 #include "consts.h"
 #include "cube.h"
 #include "camera.h"
+#include "command_state.h"
 
 
 
@@ -36,7 +37,9 @@ Window::Window(const std::string& title):m_running(false) {
 
     m_cube = new Cube();
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
-    first_mouse_move = true;
+
+    m_camera_state_index = 0;
+    m_camera_states.push_back(new CameraCommandState());
 
 
 }
@@ -88,59 +91,21 @@ void Window::handle_event(float delta_time) {
 
             }
 
-            if(event.key.code == sf::Keyboard::W) 
-                Camera::get_instance()->handle_keyboard(Camera::Direction::Forward, delta_time);
-
-            if(event.key.code == sf::Keyboard::S) 
-                Camera::get_instance()->handle_keyboard(Camera::Direction::Backward, delta_time);
-
-            if(event.key.code == sf::Keyboard::A) 
-                Camera::get_instance()->handle_keyboard(Camera::Direction::Left, delta_time);
-
-            if(event.key.code == sf::Keyboard::D) 
-                Camera::get_instance()->handle_keyboard(Camera::Direction::Right, delta_time);
-
-            if(event.key.code == sf::Keyboard::Up) 
-                Camera::get_instance()->handle_keyboard(Camera::Direction::Up, delta_time);
-
-            if(event.key.code == sf::Keyboard::Down) 
-                Camera::get_instance()->handle_keyboard(Camera::Direction::Down, delta_time);
-
-            if(event.key.code == sf::Keyboard::O) 
-                m_cube->increase_triangle();
-
-            if(event.key.code == sf::Keyboard::P) 
-                m_cube->decrease_triangle();
-            
-
         }
 
-        if(event.type == sf::Event::MouseMoved) {
-            sf::Vector2i mouse_position =  sf::Mouse::getPosition();
-            float mouse_pos_x = (float)mouse_position.x;
-            float mouse_pos_y = (float)mouse_position.y;
-
-            if(first_mouse_move) {
-                last_mouse_x = mouse_pos_x;
-                last_mouse_y = mouse_pos_y;
-                first_mouse_move = false;
-            }
-
-            float x_offset = mouse_pos_x - last_mouse_x;
-            float y_offset = last_mouse_y - mouse_pos_y;
-
-            last_mouse_x = mouse_pos_x;
-            last_mouse_y = mouse_pos_y;
-
-            Camera::get_instance()->handle_mouse_movement(x_offset, y_offset);
-
-        }
-
-        if(event.type == sf::Event::MouseLeft)
-            first_mouse_move = true;
+        m_camera_states[m_camera_state_index]->handle(event, delta_time);
 
 
     }
+
+    /*
+
+    if(event.key.code == sf::Keyboard::O) 
+        m_cube->increase_triangle();
+
+    if(event.key.code == sf::Keyboard::P) 
+        m_cube->decrease_triangle();
+        */
 
 }
 

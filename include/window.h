@@ -7,8 +7,10 @@ namespace sf {
 };
 
 #include <string>
+#include <vector>
 
 struct Cube;
+struct CameraCommandState;
 
 struct Window {
     Window(const std::string& title="Window");
@@ -25,9 +27,10 @@ struct Window {
     Cube* m_cube;
     bool m_running;
 
-    bool first_mouse_move;
-    float last_mouse_x;
-    float last_mouse_y;
+
+    std::vector<CameraCommandState*> m_camera_states;
+    int m_camera_state_index;
+
 
 
 };
