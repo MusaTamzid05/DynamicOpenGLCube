@@ -5,6 +5,7 @@
 #include "cube.h"
 #include "camera.h"
 #include "command_state.h"
+#include "light.h"
 
 
 Command::Command() {
@@ -50,6 +51,7 @@ Window::Window(const std::string& title):m_running(false) {
     
 
     m_cube = new Cube();
+    m_light = new Light(glm::vec3(3.0f, 0.0f, 0.0f));
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
 
     command.command_states.push_back(new CameraCommandState());
@@ -131,6 +133,7 @@ void Window::render() {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     m_cube->render();
+    m_light->render();
     m_window->display();
 
 }
@@ -139,4 +142,5 @@ void Window::render() {
 void Window::update(float delta_time) {
     Camera::get_instance()->update_camera_vectors();
     m_cube->update();
+    m_light->update();
 }

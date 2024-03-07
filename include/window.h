@@ -12,6 +12,7 @@ namespace sf {
 
 struct Cube;
 struct CommandState;
+struct Light;
 
 struct Command {
     Command();
@@ -36,6 +37,7 @@ struct Window {
 
     sf::Window* m_window;
     Cube* m_cube;
+    Light* m_light;
     bool m_running;
 
     Command command;
