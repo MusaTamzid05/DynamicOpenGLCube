@@ -10,7 +10,7 @@ struct Entity {
     Entity();
     virtual ~Entity();
 
-    virtual void render() = 0;
+    virtual void render();
     virtual void update();
 
     Shader* m_shader;

@@ -190,6 +190,7 @@ void Cube::reset_mesh() {
 
 
 void Cube::render() {
+    Entity::render();
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture_id);
