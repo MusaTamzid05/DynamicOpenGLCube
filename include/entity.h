@@ -3,6 +3,8 @@
 
 struct Shader;
 
+#include <glm/glm.hpp>
+
 
 struct Entity {
     Entity();
@@ -16,6 +18,8 @@ struct Entity {
     unsigned int VAO;
     unsigned int VBO;
     unsigned int EBO;
+
+    glm::vec3 position;
 
 
 };
