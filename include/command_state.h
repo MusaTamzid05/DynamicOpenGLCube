@@ -5,6 +5,7 @@
 
 
 struct Cube;
+struct Light;
 
 struct CommandState {
     virtual void handle(const sf::Event& event, float delta_time) = 0;
@@ -20,12 +21,21 @@ struct CameraCommandState : CommandState {
     float last_mouse_y;
 };
 
-struct CubeState : CommandState {
-    CubeState(Cube* cube);
-    virtual ~CubeState();
+struct CubeCommandState : CommandState {
+    CubeCommandState(Cube* cube);
+    virtual ~CubeCommandState();
     void handle(const sf::Event& event, float delta_time);
 
     Cube* m_cube;
+
+};
+
+struct LightCommandState: CommandState {
+    LightCommandState(Light* light);
+    virtual ~LightCommandState();
+    void handle(const sf::Event& event, float delta_time);
+
+    Light* m_light;
 
 };
 

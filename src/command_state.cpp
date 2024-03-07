@@ -1,6 +1,7 @@
 #include "command_state.h"
 #include "camera.h"
 #include "cube.h"
+#include "light.h"
 
 
 CameraCommandState::CameraCommandState():
@@ -65,18 +66,18 @@ void CameraCommandState::handle(const sf::Event& event, float delta_time) {
 
 }
 
-CubeState::CubeState(Cube* cube):m_cube(cube) {
+CubeCommandState::CubeCommandState(Cube* cube):m_cube(cube) {
 
 }
 
-CubeState::~CubeState() {
+CubeCommandState::~CubeCommandState() {
 
 }
 
 
 
 
-void CubeState::handle(const sf::Event& event, float delta_time) {
+void CubeCommandState::handle(const sf::Event& event, float delta_time) {
     if(event.type != sf::Event::KeyPressed)
         return;
 
@@ -93,9 +94,58 @@ void CubeState::handle(const sf::Event& event, float delta_time) {
 
 
 
+LightCommandState::LightCommandState(Light* light):m_light(light) {
+
+}
 
 
+LightCommandState::~LightCommandState() {
 
+}
+
+
+void LightCommandState::handle(const sf::Event& event, float delta_time) {
+    if(event.type != sf::Event::KeyPressed)
+        return;
+
+    glm::vec3 offset = glm::vec3(0.0f);
+    bool position_updated = false;
+
+    if(event.key.code == sf::Keyboard::W)  {
+        offset.z -= 1.0f;
+        position_updated = true;
+    }
+
+    else if(event.key.code == sf::Keyboard::S)  {
+        offset.z += 1.0f;
+        position_updated = true;
+    }
+
+    if(event.key.code == sf::Keyboard::A)  {
+        offset.x -= 1.0f;
+        position_updated = true;
+    }
+
+    else if(event.key.code == sf::Keyboard::D)  {
+        offset.x += 1.0f;
+        position_updated = true;
+    }
+
+    if(event.key.code == sf::Keyboard::Up)  {
+        offset.y += 1.0f;
+        position_updated = true;
+    }
+
+    else if(event.key.code == sf::Keyboard::Down)  {
+        offset.y -= 1.0f;
+        position_updated = true;
+    }
+
+    if(position_updated) 
+        m_light->update_position(offset, delta_time);
+
+
+}
 
 
 

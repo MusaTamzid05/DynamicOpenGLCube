@@ -3,8 +3,10 @@
 #include "shader.h"
 #include "camera.h"
 
-Light::Light(const glm::vec3& position) {
+Light::Light(const glm::vec3& position, float speed) {
     this->position = position;
+    m_speed =  speed;
+
     m_shader = new Shader("../shaders/light.vs", "../shaders/light.fs");
 
     std::vector<float> vertices = {
@@ -129,4 +131,13 @@ void Light::render() {
 void Light::update() {
 
 }
+
+
+void Light::update_position(const glm::vec3& offset, float delta_time) {
+    position += (offset * m_speed * delta_time);
+
+}
+
+
+
 

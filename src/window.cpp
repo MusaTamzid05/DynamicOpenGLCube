@@ -55,7 +55,8 @@ Window::Window(const std::string& title):m_running(false) {
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
 
     command.command_states.push_back(new CameraCommandState());
-    command.command_states.push_back(new CubeState(m_cube));
+    command.command_states.push_back(new CubeCommandState(m_cube));
+    command.command_states.push_back(new LightCommandState(m_light));
 
 
 
