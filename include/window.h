@@ -4,13 +4,24 @@
 
 namespace sf {
     class Window;
+    class Event;
 };
 
 #include <string>
 #include <vector>
 
 struct Cube;
-struct CameraCommandState;
+struct CommandState;
+
+struct Command {
+    Command();
+
+    std::vector<CommandState*> command_states;
+    int m_command_state_index;
+
+    void handle(const sf::Event& event, float delta_time);
+    void change_state();
+};
 
 struct Window {
     Window(const std::string& title="Window");
@@ -27,9 +38,9 @@ struct Window {
     Cube* m_cube;
     bool m_running;
 
+    Command command;
 
-    std::vector<CameraCommandState*> m_camera_states;
-    int m_camera_state_index;
+
 
 
 

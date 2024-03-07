@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 
+
+struct Cube;
+
 struct CommandState {
     virtual void handle(const sf::Event& event, float delta_time) = 0;
 };
@@ -15,6 +18,15 @@ struct CameraCommandState : CommandState {
     bool first_mouse_move;
     float last_mouse_x;
     float last_mouse_y;
+};
+
+struct CubeState : CommandState {
+    CubeState(Cube* cube);
+    virtual ~CubeState();
+    void handle(const sf::Event& event, float delta_time);
+
+    Cube* m_cube;
+
 };
 
 

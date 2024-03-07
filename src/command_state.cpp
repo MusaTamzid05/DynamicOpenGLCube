@@ -1,5 +1,6 @@
 #include "command_state.h"
 #include "camera.h"
+#include "cube.h"
 
 
 CameraCommandState::CameraCommandState():
@@ -63,3 +64,41 @@ void CameraCommandState::handle(const sf::Event& event, float delta_time) {
         first_mouse_move = true;
 
 }
+
+CubeState::CubeState(Cube* cube):m_cube(cube) {
+
+}
+
+CubeState::~CubeState() {
+
+}
+
+
+
+
+void CubeState::handle(const sf::Event& event, float delta_time) {
+    if(event.type != sf::Event::KeyPressed)
+        return;
+
+
+    if(event.key.code == sf::Keyboard::W) 
+        m_cube->increase_triangle();
+
+    if(event.key.code == sf::Keyboard::S) 
+        m_cube->decrease_triangle();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

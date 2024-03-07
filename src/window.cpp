@@ -7,6 +7,20 @@
 #include "command_state.h"
 
 
+Command::Command() {
+    m_command_state_index = 0;
+}
+
+void Command::handle(
+        const sf::Event& event,
+        float delta_time) {
+    command_states[m_command_state_index]->handle(event, delta_time);
+}
+
+void Command::change_state() {
+    m_command_state_index = (m_command_state_index + 1) % command_states.size();
+}
+
 
 Window::Window(const std::string& title):m_running(false) {
 
@@ -38,8 +52,10 @@ Window::Window(const std::string& title):m_running(false) {
     m_cube = new Cube();
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
 
-    m_camera_state_index = 0;
-    m_camera_states.push_back(new CameraCommandState());
+    command.command_states.push_back(new CameraCommandState());
+    command.command_states.push_back(new CubeState(m_cube));
+
+
 
 
 }
@@ -91,21 +107,21 @@ void Window::handle_event(float delta_time) {
 
             }
 
+            if(event.key.code == sf::Keyboard::Return)  {
+                command.change_state();
+                std::cout << "Command State changed.\n";
+
+            }
+            
+
         }
 
-        m_camera_states[m_camera_state_index]->handle(event, delta_time);
+        command.handle(event, delta_time);
+
 
 
     }
 
-    /*
-
-    if(event.key.code == sf::Keyboard::O) 
-        m_cube->increase_triangle();
-
-    if(event.key.code == sf::Keyboard::P) 
-        m_cube->decrease_triangle();
-        */
 
 }
 
