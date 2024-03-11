@@ -20,6 +20,15 @@ void Command::handle(
 
 void Command::change_state() {
     m_command_state_index = (m_command_state_index + 1) % command_states.size();
+
+    if(m_command_state_index == 0) 
+        std::cout << "Camera Input State\n";
+
+    else if(m_command_state_index == 1) 
+        std::cout << "Cube Input State\n";
+
+    else if(m_command_state_index == 2) 
+        std::cout << "Light Input State\n";
 }
 
 
@@ -110,11 +119,8 @@ void Window::handle_event(float delta_time) {
 
             }
 
-            if(event.key.code == sf::Keyboard::Return)  {
+            if(event.key.code == sf::Keyboard::Return)  
                 command.change_state();
-                std::cout << "Command State changed.\n";
-
-            }
             
 
         }
