@@ -7,7 +7,7 @@
 
 CubeMesh::CubeMesh():
     current_triangle_no(1), 
-    vertex_length(5),
+    vertex_length(8),
     total_position_vertex_length(3)
 {
 
@@ -19,80 +19,79 @@ CubeMesh::CubeMesh():
         // front
        
         // triangle = 1
-        -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, // bottom left
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
-        -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, // top left
+        -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0, 0.0f, 1.0f,  // bottom left
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0f, 1.0f,   // top right
+        -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0, 0.0f, 1.0f,   // top left
 
 
         // triangle = 2
-        1.0f, -1.0f, 1.0f, 1.0f, 0.0f, // bottom right
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
-        -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, // bottom left
+        1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0, 0.0f, 1.0f,   // bottom right
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0, 0.0f, 1.0f,   // top right
+        -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0, 0.0f, 1.0f,   // bottom left
 
         // back
        
         // triangle = 3
-        -1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
-        1.0f, 1.0f, -1.0f, 0.0f, 1.0f, // top right
-        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, // top left
+        -1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, // bottom left
+        1.0f, 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,   // top right
+        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,  // top left
 
 
         // triangle = 4
-        1.0f, -1.0f, -1.0f, 0.0f, 0.0f, // bottom right
-        1.0f, 1.0f, -1.0f, 0.0f, 1.0f, // top right
-        -1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
+        1.0f, -1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, // bottom right
+        1.0f, 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f, // top right
+        -1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, // bottom left
 
         // left
         // triangle 5
         
-        -1.0f, -1.0f, -1.0f, 0.0f, 0.0f, // bottom left
-        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
-        -1.0f, 1.0f, -1.0f, 0.0f, 1.0f, // top left
+        -1.0f, -1.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, // bottom left
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f,  // top right
+        -1.0f, 1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, 0.0f,  // top left
 
         // triangle 6
-        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, // bottom right
-        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // top right
-        -1.0f, -1.0f, -1.0f, 0.0f, 0.0f, // bottom left
+        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f,  // bottom right
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f,  // top right
+        -1.0f, -1.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,  // bottom left
 
 
         // right
         // triangle 7
         
-        1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
-        1.0f, 1.0f, 1.0f, 0.0f, 1.0f, // top right
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, // top left
+        1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,  // bottom left
+        1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, // top right
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, // top left
 
         // triangle 8
-        1.0f, -1.0f, 1.0f, 0.0f, 0.0f, // bottom right
-        1.0f, 1.0f, 1.0f, 0.0f, 1.0f, // top right
-        1.0f, -1.0f, -1.0f, 1.0f, 0.0f, // bottom left
+        1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom right
+        1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, // top right
+        1.0f, -1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, // bottom left
 
         // top
 
-
         // triangle 9
-        -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, // bottom left
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, // top right
-        -1.0f, 1.0f, -1.0f, 0.0f, 1.0f, // top left
+        -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, // top right
+        -1.0f, 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // top left
 
         // triangle 10
-        1.0f, 1.0f, 1.0f, 1.0f, 0.0f, // bottom right
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, // top right
-        -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, // bottom left
+        1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom right
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, // top right
+        -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom left
 
 
         // bottom
 
 
         // triangle 11
-        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, // bottom left
-        1.0f, -1.0f, -1.0f, 0.0f, 1.0f, // top right
-        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, // top left
+        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, // bottom left
+        1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f, // top right
+        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f, // top left
 
         // triangle 12
-        1.0f, -1.0f, 1.0f, 0.0f, 0.0f, // bottom right
-        1.0f, -1.0f, -1.0f, 0.0f, 1.0f, // top right
-        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, // bottom left
+        1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, // bottom right
+        1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, -1.0f, 0.0f, // top right
+        -1.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, // bottom left
 
 
 
@@ -177,11 +176,14 @@ void Cube::reset_mesh() {
     glBufferData(GL_ARRAY_BUFFER,vertices.size() *  sizeof(float), vertices.data(), GL_STATIC_DRAW);
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, mesh.vertex_length * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     // texture coord attribute
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, mesh.vertex_length  * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, mesh.vertex_length  * sizeof(float), (void*)(5 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     glBindVertexArray(0);
 
