@@ -4,6 +4,8 @@
 #include "entity.h"
 #include <vector>
 
+struct Light;
+
 struct CubeMesh {
     CubeMesh();
     virtual ~CubeMesh();
@@ -31,7 +33,7 @@ struct CubeMesh {
 };
 
 struct Cube : Entity {
-    Cube();
+    Cube(Light* light);
     virtual ~Cube();
 
     void reset_mesh();
@@ -44,6 +46,8 @@ struct Cube : Entity {
     CubeMesh mesh;
 
     int total_draw_points;
+
+    Light* light;
 };
 
 #endif

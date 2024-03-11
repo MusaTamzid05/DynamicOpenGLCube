@@ -50,8 +50,8 @@ Window::Window(const std::string& title):m_running(false) {
     glEnable(GL_DEPTH_TEST);
     
 
-    m_cube = new Cube();
     m_light = new Light(glm::vec3(3.0f, 0.0f, 0.0f));
+    m_cube = new Cube(m_light);
     Camera::get_instance()->init(glm::vec3(0.0f, 0.0f, 4.0f));
 
     command.command_states.push_back(new CameraCommandState());

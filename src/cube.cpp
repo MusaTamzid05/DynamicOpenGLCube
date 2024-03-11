@@ -3,6 +3,7 @@
 #include "headers.h"
 #include "camera.h"
 #include "utils.h"
+#include "light.h"
 #include <iostream>
 
 CubeMesh::CubeMesh():
@@ -137,9 +138,9 @@ int CubeMesh::get_total_draw_points() const {
     return current_triangle_no * total_position_vertex_length;
 }
 
-Cube::Cube() {
+Cube::Cube(Light* light):light(light) {
 
-    m_shader = new Shader("../shaders/cube.vs", "../shaders/cube.fs");
+    m_shader = new Shader("../shaders/cube_light.vs", "../shaders/cube_light.fs");
 
 
     glGenVertexArrays(1, &VAO);
@@ -193,6 +194,10 @@ void Cube::reset_mesh() {
 
 void Cube::render() {
     Entity::render();
+
+    m_shader->use();
+    m_shader->set_vec3("lightPosition", light->position);
+
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture_id);
